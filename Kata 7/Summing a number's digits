@@ -1,0 +1,28 @@
+//Write a function named sumDigits which takes a number as input and returns the sum of the absolute value of each of the number's
+//decimal digits. For example:
+
+//  SumDigits(10)  // Returns 1
+//  SumDigits(99)  // Returns 18
+//  SumDigits(-32) // Returns 5
+//Let's assume that all numbers in the input will be integer values.
+
+using System;
+
+public class Kata
+{
+  public static int SumDigits(int number)
+  {
+    number = Math.Abs(number);
+    char[] chars = Convert.ToString(number).ToCharArray();
+    int sum = 0;
+    int cur;
+    
+    foreach (char c in chars)
+    {
+      cur = (int)char.GetNumericValue(c);
+      sum += cur;
+    }
+    
+    return sum;
+  }
+}
