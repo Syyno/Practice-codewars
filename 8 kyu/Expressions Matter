@@ -1,0 +1,47 @@
+//Task
+//Given three integers a ,b ,c, return the largest number obtained after inserting the following operators and brackets: +, *, ().
+
+//Consider an Example :
+//With the numbers are 1, 2 and 3 , here are some ways of placing signs and brackets:
+
+//1 * (2 + 3) = 5
+//1 * 2 * 3 = 6
+//1 + 2 * 3 = 7
+//(1 + 2) * 3 = 9
+//So the maximum value that you can obtain is 9.
+
+public class Kata
+{
+    public static int ExpressionsMatter(int a, int b, int c)
+    {
+        int method1 = a * (b + c);
+        int method2 = a * b * c;
+        int method3 = a + b * c;
+        int method4 = (a + b) * c;
+        int method5 = a + b + c;
+        
+        int max;
+        if (method1 >= method2 && method1 >= method3 && method1 >= method4 && method1 >= method5)
+        {
+          max = method1;
+        }
+        else if (method2 >= method1 && method2 >= method3 && method2 >= method4 && method2 >= method5) 
+        {
+          max = method2;
+        }
+        else if (method3 >= method1 && method3 >= method2 && method3>= method4  && method3 >= method5)
+        {
+          max = method3;
+        }
+        else if (method4 >= method1 && method4 >= method2 && method4 >= method3  && method4 >= method5)
+        {
+          max = method4;
+        }
+        else 
+        {
+          max = method5;
+        }
+        
+        return max; 
+    }
+}
