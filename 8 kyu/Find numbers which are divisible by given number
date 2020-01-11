@@ -1,0 +1,28 @@
+//Complete the function which takes two arguments and returns all numbers which are divisible by the given divisor.
+//First argument is an array of numbers and the second is the divisor.
+
+//Example
+//DivisibleBy(new int[]{ 1, 2, 3, 4, 5, 6}, 2) == new int[] {2, 4, 6}
+
+using System;
+using System.Collections.Generic;
+
+public class Kata
+{
+  public static int[] DivisibleBy(int[] numbers, int divisor)
+  {
+     List<int> divisible = new List<int>();
+
+     foreach (int i in numbers)
+     {
+       if (i % divisor == 0)
+       {
+         divisible.Add(i);
+       }
+     }
+     
+    int[] result = divisible.ToArray();
+    
+    return result;
+  }
+}
