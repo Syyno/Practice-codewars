@@ -1,0 +1,30 @@
+//Yor task is to write function factorial
+
+//https://en.wikipedia.org/wiki/Factorial
+
+using System;
+
+namespace Solution
+{
+  public static class Program
+  {
+    public static int factorial(int n)
+    {
+      
+      if (n == 0 || n == 1)
+      {
+        return 1;
+      }
+      
+      int res = 1;
+      
+      while (n > 0) 
+      {
+        res *= n;
+        n--;
+      }
+      
+      return res;
+    }
+  }
+}
