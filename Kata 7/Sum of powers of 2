@@ -1,0 +1,71 @@
+//Description
+//Given a number n, you should find a set of numbers for which the sum equals n. This set must consist exclusively
+//of values that are a power of 2 (eg: 2^0 => 1, 2^1 => 2, 2^2 => 4, ...).
+
+//The function powers takes a single parameter, the number n, and should return an array of unique numbers.
+
+//Criteria
+//The function will always receive a valid input: any positive integer between 1 and the max integer value for
+//your language (eg: for JavaScript this would be 9007199254740991 otherwise known as Number.MAX_SAFE_INTEGER).
+
+//The function should return an array of numbers that are a power of 2 (2^x = y).
+
+//Each member of the returned array should be unique. (eg: the valid answer for powers(2) is [2], not [1, 1])
+
+//Members should be sorted in ascending order (small -> large). (eg: the valid answer for powers(6) is [2, 4], not [4, 2])
+
+using System;
+using System.Collections.Generic;
+
+public class Kata {
+  public static int[] Powers(int n) {
+    
+    List<long> res = new List<long>();
+    long sum = 0;
+    long tmp = 0;
+    int pow = 0;
+
+    while (sum < n)
+    {
+      tmp = (long)Math.Pow(2, pow);
+      sum = tmp;
+      ++pow;
+    }
+
+    sum = 0;
+    tmp = 0;
+
+    while (sum < n)
+    {
+      pow--;
+      tmp = (long)Math.Pow(2, pow);
+      if (tmp > n)
+      {
+        continue;
+      }
+      else if ((sum + tmp) > n)
+      {
+        continue;
+      }
+      else if ((sum + tmp) == n)
+      {                
+        res.Add(tmp);
+        break;
+      }
+      
+      sum += tmp;
+      res.Add(tmp);
+    }
+    
+    int[] result = new int[res.Count];
+    int i = 0;
+    foreach (long l in res)
+    {
+      result[i] = (int) l;
+      i++;
+    }
+    
+    Array.Sort(result);
+    return result;
+  }
+}
