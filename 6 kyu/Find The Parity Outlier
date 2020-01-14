@@ -12,7 +12,7 @@ public class Kata
   {
     List<int> odds = new List<int>();
     List<int> evens = new List<int>();
-    ist<int> zeros = new List<int>();
+    List<int> zeros = new List<int>();
   
     foreach (int i in integers)
     {
