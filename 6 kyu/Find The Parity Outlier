@@ -1,0 +1,50 @@
+//You are given an array (which will have a length of at least 3, but could be very large) containing integers. 
+//The array is either entirely comprised of odd integers or entirely comprised of even integers except for a single integer N. 
+//Write a method that takes the array as an argument and returns this "outlier" N.
+
+using System.Collections.Generic;
+using System.Linq;
+using System;
+
+public class Kata
+{
+  public static int Find(int[] integers)
+  {
+    List<int> odds = new List<int>();
+    List<int> evens = new List<int>();
+    ist<int> zeros = new List<int>();
+  
+    foreach (int i in integers)
+    {
+      if (i != 0)
+      {
+        if (i == int.MaxValue)
+        {
+          continue;
+        }
+        else if  (i % 2 == 0)
+        {
+          evens.Add(i);
+        }
+        else if (i % 2 != 0)
+        {
+          odds.Add(i);
+        }
+      }
+      zeros.Add(i);
+    }
+  
+    if (odds.Count == 1 && evens.Count != 1 && zeros.Count != 1 && evens.Count != 0)
+    {
+      return odds[0];
+    }
+    else if (evens.Count == 1 && zeros.Count != 1 && odds.Count != 1 && odds.Count != 0)
+    {
+      return evens[0];
+    }
+    else
+    {
+      return zeros[0];
+    }
+  }
+}
