@@ -1,0 +1,14 @@
+//Write a function which takes a number and returns the corresponding ASCII char for that value.
+
+//Example:
+
+//get_char(65) # => 'A'
+
+public class Kata
+{
+  public static char GetChar(int charcode)
+  {
+    char c = (char) charcode;
+    return c;
+  }
+}
