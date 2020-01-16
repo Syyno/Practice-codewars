@@ -19,10 +19,7 @@ public class SumFct
 {
   public static BigInteger perimeter(BigInteger n) 
   {
-    BigInteger res = 0;
-    BigInteger sum = 0;
-    BigInteger a = 0;
-    BigInteger b = 1;
+    BigInteger res = 0, sum = 0, a = 0, b = 1;  
     
     for (int i = 0; i < n; i++)
     {
