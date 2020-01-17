@@ -1,0 +1,32 @@
+//altERnaTIng cAsE <=> ALTerNAtiNG CaSe
+//Define String.prototype.toAlternatingCase (or a similar function/method such as
+//to_alternating_case/toAlternatingCase/ToAlternatingCase in your selected language; see the initial solution for details) 
+//such that each lowercase letter becomes uppercase and each uppercase letter becomes lowercase. For example:
+
+//"hello world".ToAlternatingCase() == "HELLO WORLD"
+//"HELLO WORLD".ToAlternatingCase() == "hello world"
+
+using System;
+
+namespace Extensions
+{
+  public static class StringExt
+  {
+    public static string ToAlternatingCase (this string s)
+    {
+      string uppered = s.ToUpper();
+      string lowered = s.ToLower();
+      string result = "";
+      
+      for (int i = 0; i < s.Length; i++)
+      {
+        if (s[i] == uppered[i])
+            result += s[i].ToString().ToLower();
+        else 
+            result += s[i].ToString().ToUpper();
+      }
+      
+      return result;
+    }
+  }
+}
