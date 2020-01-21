@@ -1,0 +1,171 @@
+//In this kata you have to write a simple Morse code decoder. While the Morse code is now mostly superceded by voice and digital
+//data communication channels, it still has its use in some applications around the world.
+//The Morse code encodes every character as a sequence of "dots" and "dashes". For example, the letter A is coded as ·−, letter Q 
+//is coded as −−·−, and digit 1 is coded as ·−−−−. The Morse code is case-insensitive, traditionally capital letters are used. 
+//When the message is written in Morse code, a single space is used to separate the character codes and 3 spaces are used to separate words.
+//For example, the message HEY JUDE in Morse code is ···· · −·−− ·−−− ··− −·· ·.
+
+//NOTE: Extra spaces before or after the code have no meaning and should be ignored.
+
+//In addition to letters, digits and some punctuation, there are some special service codes, the most notorious of those is the
+//international distress signal SOS (that was first issued by Titanic), that is coded as ···−−−···. These special codes are treated as
+//single special characters, and usually are transmitted as separate words.
+
+//Your task is to implement a function that would take the morse code as input and return a decoded human-readable string.
+
+//For example:
+
+//MorseCodeDecoder.Decode(".... . -.--   .--- ..- -.. .")
+//should return "HEY JUDE"
+
+using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+
+class MorseCodeDecoder
+{
+	public static string Decode(string str)
+  {
+
+    string[] arr = str.Trim().Split(" ");
+    List<string> res = new List<string>();
+    
+		foreach (string s in arr)
+    {
+      switch (s)
+      {
+        case ".-":
+            res.Add("A");
+            break;
+        case "-...":
+            res.Add("B");
+            break;
+        case "-.-.":
+            res.Add("C");
+            break;
+        case "-..":
+            res.Add("D");
+            break;
+        case ".":
+            res.Add("E");
+            break;
+        case "..-.":
+            res.Add("F");
+            break;
+        case "--.":
+            res.Add("G");
+            break;
+        case "....":
+            res.Add("H");
+            break;
+        case "..":
+            res.Add("I");
+            break;
+        case ".---":
+            res.Add("J");
+            break;
+        case "-.-":
+            res.Add("K");
+            break;
+        case ".-..":
+            res.Add("L");
+            break;
+        case "--":
+            res.Add("M");
+            break;
+        case "-.":
+            res.Add("N");
+            break;
+        case "---":
+            res.Add("O");
+            break;
+        case ".--.":
+            res.Add("P");
+            break;
+        case "--.-":
+            res.Add("Q");
+            break;
+        case ".-.":
+            res.Add("R");
+            break;
+        case "...":
+            res.Add("S");
+            break;
+        case "-":
+            res.Add("T");
+            break;
+        case "..-":
+            res.Add("U");
+            break;
+        case "...-":
+            res.Add("V");
+            break;
+        case ".--":
+            res.Add("W");
+            break;
+        case "-..-":
+            res.Add("X");
+            break;
+        case "-.--":
+            res.Add("Y");
+            break;
+        case "--..":
+            res.Add("Z");
+            break;
+        case    "...---...":
+            res.Add("SOS");
+            break;
+        case "-----":
+            res.Add("0");
+            break;
+        case ".----":
+            res.Add("1");
+            break;
+        case "..---":
+            res.Add("2");
+            break;
+        case "...--":
+            res.Add("3");
+            break;
+        case "....-":
+            res.Add("4");
+            break;
+        case ".....":
+            res.Add("5");
+            break;
+        case "-....":
+            res.Add("6");
+            break;
+        case "--...":
+            res.Add("7");
+            break;
+        case "---..":
+            res.Add("8");
+            break;
+        case "----.":
+            res.Add("9");
+            break;
+        case ".-.-.-":
+            res.Add(".");
+            break;
+        case "--..--":
+            res.Add(",");
+            break;
+        case "..--..":
+            res.Add("?");
+            break;
+        case "-.-.--":
+            res.Add("!");
+            break;
+       default:
+             res.Add(" ");
+             break;                        
+      }
+    }
+                       
+    string result = String.Join("", res.ToArray());
+    result = Regex.Replace(result, @"\s+", " ");
+    
+    return result;
+  }
+}
