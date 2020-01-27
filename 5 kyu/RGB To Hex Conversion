@@ -1,0 +1,40 @@
+//The rgb() method is incomplete. Complete the method so that passing in RGB decimal values will result in a hexadecimal 
+//representation being returned. The valid decimal values for RGB are 0 - 255. Any (r,g,b) argument values that fall out of that
+//range should be rounded to the closest valid value.
+
+//The following are examples of expected output values:
+
+//Rgb(255, 255, 255) # returns FFFFFF
+//Rgb(255, 255, 300) # returns FFFFFF
+//Rgb(0,0,0) # returns 000000
+//Rgb(148, 0, 211) # returns 9400D3
+
+using System;
+
+public class Kata
+{
+  public static string Rgb(int r, int g, int b) 
+  {
+    if (r > 255)
+      r = 255;
+    else if (r < 0)
+      r = 0;
+    if (g > 255)
+      g = 255;
+    else if (g < 0)
+      g = 0;
+    if (b > 255)
+      b = 255;
+    else if (b < 0)
+      b = 0;
+        
+    string red = r == 0 ? "00" : r.ToString("X");
+    red = red.Length == 1 ? "0" + red : red;
+    string green = g == 0 ? "00" : g.ToString("X");
+    green = green.Length == 1 ? "0" + green : green;
+    string blue = b == 0 ? "00" : b.ToString("X");
+    blue = blue.Length == 1 ? "0" + blue : blue;
+
+    return red + green + blue;
+  }
+}
