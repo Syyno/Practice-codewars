@@ -1,0 +1,48 @@
+//Task
+//In this simple Kata your task is to create a function that turns a string into a Mexican Wave. You will be passed a string and 
+//you must return that string in an array where an uppercase letter is a person standing up.
+//Rules
+//1.  The input string will always be lower case but maybe empty.
+//2.  If the character in the string is whitespace then pass over it as if it was an empty seat.
+//Example
+//wave("hello") => []string{"Hello", "hEllo", "heLlo", "helLo", "hellO"}
+
+using System;
+using System.Collections.Generic;
+
+namespace CodeWars
+{
+    public class Kata
+    {
+        public List<string> wave(string str)
+        {
+            List<string> res = new List<string>();    
+            char[] chars = str.ToCharArray();
+            bool b = true;
+            
+            while (b)
+            {
+              for (int j=0; j<chars.Length; j++)
+              {
+                string tmp = "";
+                if (chars[j] == ' ' )
+                  continue;
+                if (chars[j] == Char.ToUpper(chars[j]))
+                {
+                    chars[j] = Char.ToLower(chars[j]);
+                }
+                else 
+                {
+                  chars[j] = Char.ToUpper(chars[j]);
+                  tmp = String.Concat(chars);
+                  res.Add(tmp);
+                  chars[j] = Char.ToLower(chars[j]);
+                }
+              }
+              break;
+            }
+            
+            return res;  
+        }
+    }
+}
