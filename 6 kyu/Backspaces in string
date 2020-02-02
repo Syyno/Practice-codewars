@@ -10,32 +10,41 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 
-public class Kata
+namespace smile67Kata
 {
-  public static string CleanString(string s)
-  {
-    List<char> list = new List<char>();
-    int skip = 0;
+    using System;
 
-    for (int i = s.Length-1; i>=0; i--)
+    public class Kata 
     {
-      if (s[i] == '#')
-          skip++;
-      else 
-      {
-          if (skip <= 0)
-          {
-            list.Add(s[i]);
-          }
-          else
-            skip--;
-      } 
+        public string reverseAndCombineText(string text) 
+        {
+            string s = "";
+            int i = 0;
+            text = Regex.Replace(text, @"\s+", " ");
+            List<string> list = text.Split(" ").ToList();
+            if (list.Count == 1)
+              return list[0];
+
+
+            while (list.Count > 1)
+            {
+              if (i == list.Count)
+                  i = 0; 
+              string tmp = new string(list[i].ToCharArray().Reverse().ToArray());
+              string tmp2 = i + 1 > list.Count-1 ? "" : new string(list[i+1].ToCharArray().Reverse().ToArray()); 
+              list.RemoveAt(i);
+              if (tmp2 != "")
+                list.RemoveAt(i);              
+              string tmp3 = tmp + tmp2;
+              list.Insert(i, tmp3);
+              if (i < list.Count)
+                  i++;  
+            }
+                       
+            return list[0];
+        }
     }
-    
-    char[] arr = list.ToArray();
-    Array.Reverse(arr);
-    
-    return String.Concat(arr);
-  }
 }
