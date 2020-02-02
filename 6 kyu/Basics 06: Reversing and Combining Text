@@ -1,0 +1,61 @@
+//Your task is to Reverse and Combine Words.
+//It's not too difficult, but there are some things you have to consider...
+
+//So what to do?
+
+//Input: String containing different "words" separated by spaces
+
+//1. More than one word? Reverse each word and combine first with second, third with fourth and so on...
+//   (odd number of words => last one stays alone, but has to be reversed too)
+//2. Start it again as long as there's only one word without spaces
+//3. Return your result...
+//Some easy examples:
+
+//Input:  "abc def"
+//Output: "cbafed"
+
+//Input:  "abc def ghi 123"
+//Output: "defabc123ghi"
+
+//Input:  "abc def gh34 434ff 55_eri 123 343"
+//Output: "43hgff434cbafed343ire_55321"
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+namespace smile67Kata
+{
+    using System;
+
+    public class Kata 
+    {
+        public string reverseAndCombineText(string text) 
+        {
+            if (list.Count == 1)
+              return list[0];
+            text = Regex.Replace(text, @"\s+", " ");
+            List<string> list = text.Split(" ").ToList();
+            string s = "";
+            int i = 0;
+
+            while (list.Count > 1)
+            {
+              if (i == list.Count)
+                  i = 0; 
+              string tmp = new string(list[i].ToCharArray().Reverse().ToArray());
+              string tmp2 = i + 1 > list.Count-1 ? "" : new string(list[i+1].ToCharArray().Reverse().ToArray()); 
+              list.RemoveAt(i);
+              if (tmp2 != "")
+                list.RemoveAt(i);              
+              string tmp3 = tmp + tmp2;
+              list.Insert(i, tmp3);
+              if (i < list.Count)
+                  i++;  
+            }
+                       
+            return list[0];
+        }
+    }
+}
