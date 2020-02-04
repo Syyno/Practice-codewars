@@ -39,8 +39,7 @@ public class WeightSort {
             w1 += Int32.Parse(c.ToString());
         }
         foreach (char c in s2)
-        {
-           
+        {      
             w2 += Int32.Parse(c.ToString());
         }
 
