@@ -14,9 +14,9 @@ public class Kata
   {
     char[] chars = message.ToCharArray();
     
-    for (int i=0; i<message.Length; i++)
+    for (int i=0; i<chars.Length; i++)
     {
-      int x = (int) message[i];
+      int x = (int) chars[i];
       if (x >= 65 && x <= 90)
       {
         int y = x + 13 > 90 ? 64 + x + 13 - 90 : x + 13;
