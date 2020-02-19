@@ -33,11 +33,11 @@ public class BackWardsPrime
           bool b = true;
           for (long j = 2; j <= Math.Sqrt(num); j++)
           {
-              if (num % j == 0)
-              {
-                  b = false;
-                  break;
-              }
+             if (num % j == 0)
+             {
+                 b = false;
+                 break;
+             }
           }
           return b;
       }
@@ -56,7 +56,6 @@ public class BackWardsPrime
       {
           char[] ch = n.ToString().ToCharArray();
           Array.Reverse(ch);
-         // string ss = String.Concat(ch);
           long tmp = Convert.ToInt64(String.Concat(ch));
           if (isPrime(tmp) && tmp >=13)
           {
@@ -76,5 +75,5 @@ public class BackWardsPrime
       }
          
       return res.Trim();
-	}
+  }
 }
