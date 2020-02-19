@@ -1,0 +1,97 @@
+//Divisors of 42 are : 1, 2, 3, 6, 7, 14, 21, 42. These divisors squared are: 1, 4, 9, 36, 49, 196, 441, 1764. The sum of the 
+//squared divisors is 2500 which is 50 * 50, a square!
+
+//Given two integers m, n (1 <= m <= n) we want to find all integers between m and n whose sum of squared divisors is itself a square.
+//42 is such a number.
+
+//The result will be an array of arrays or of tuples (in C an array of Pair) or a string, each subarray having two elements, first
+//the number whose squared divisors is a square and then the sum of the squared divisors.
+
+//#Examples:
+
+//list_squared(1, 250) --> [[1, 1], [42, 2500], [246, 84100]]
+//list_squared(42, 250) --> [[42, 2500], [246, 84100]]
+//The form of the examples may change according to the language, see Example Tests: for more details.
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class SumSquaredDivisors 
+{
+  public static string listSquared(long m, long n)
+	{
+  
+    List<(long, long)> list = new List<(long, long)>();
+
+    void Func(long num)
+    {
+        bool IsSquare(long number)
+        {
+            for (int i = 1; i * i <= number; i++)
+            {
+                if ((number % i == 0) && (number / i == i))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        List<long> divisors = new List<long>();
+        for (int i = 1; i <= Math.Sqrt(num); i++)
+        {
+            if (num % i == 0)
+            {
+                if (num / i == i)
+                    divisors.Add(i);
+                else
+                {
+                    divisors.Add(i);
+                    divisors.Add(num / i);
+                }
+            }
+        }
+
+        for (int i = 0; i < divisors.Count; i++)
+        {
+            divisors[i] = divisors[i] * divisors[i];
+        }
+
+        long sum = divisors.Sum();
+        if (IsSquare(sum))
+        {
+            list.Add((num, sum));
+        }
+    }
+
+    for (long i = m; i <= n; i++)
+    {
+        Func(i);
+    }
+
+    int k = 0;
+    string res = "";
+    
+    foreach (var valueTuple in list)
+    {
+        k++;
+        if (k != list.Count)
+        {
+            string tmp = $"[{valueTuple.Item1}, {valueTuple.Item2}]";
+            tmp += ", ";
+            res += tmp;
+        }
+        else
+        {
+            string tmp = $"[{valueTuple.Item1}, {valueTuple.Item2}]";
+            res += tmp;
+        }
+    }
+
+    string result = '[' + res + ']';
+    return result;
+	}
+}
