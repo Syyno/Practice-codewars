@@ -1,0 +1,75 @@
+//Given a positive number n > 1 find the prime factor decomposition of n. The result will be a string with the following form :
+
+// "(p1**n1)(p2**n2)...(pk**nk)"
+//with the p(i) in increasing order and n(i) empty if n(i) is 1.
+
+//Example: n = 86240 should return "(2**5)(5)(7**2)(11)"
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+
+public class PrimeDecomp {
+
+	public static String factors(int num) {
+        
+    string str = "";
+    List<int> res = new List<int>();
+  
+    while (num % 2 == 0)
+    {
+        res.Add(2);
+        num /= 2;
+    }
+
+    for (int i = 3; i * i <= num; i += 2)
+    {
+        while (num % i == 0)
+        {
+            res.Add(i);
+            num /= i;
+        }
+    }
+    
+    if (num > 2)
+        res.Add(num);
+    
+    int k = 0;
+    for (int j = 0; j < res.Count; j++)
+    {
+        if (j + 1 <= res.Count - 1 && res[j] == res[j+1] && k == 0)
+        {
+            str += "(";
+            str += res[j];
+            str += "**";
+            k++;
+        }
+        else if (j > 0 && res[j] == res[j-1] && j+1 <= res.Count -1 && res[j+1] == res[j])
+        {
+            k++;
+        }
+        else if (j>0 && res[j - 1] == res[j] && (j + 1 < res.Count-1 || (j + 1 >= res.Count - 1 && res[j + 1] != res[j])))
+        {
+            k++;
+            str += k;
+            str += ")";
+            k = 0;
+        }
+        else if (j == 0 && j + 1 <= res.Count - 1 && res[j + 1] != res[j])
+        {
+            str += ("(" + res[j] + ")");
+        }
+        else if ((j + 1 <= res.Count - 1 && res[j] != res[j + 1] && j > 0 && res[j] != res[j-1]) || (j + 1 > res.Count-1) && j > 0 && res[j - 1] != res[j])
+        {
+            str += ("(" + res[j] + ")");
+        }
+        else if (res.Count == 1)
+        {
+          str += str += ("(" + res[j] + ")");
+        }
+    }
+    
+    return str;
+  }
+}
